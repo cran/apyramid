@@ -8,6 +8,15 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 
+## ----eval = FALSE-------------------------------------------------------------
+#  # install.packages("drat")
+#  drat::addRepo("R4EPI")
+#  install.packages("apyramid")
+
+## ----eval = FALSE-------------------------------------------------------------
+#  # install.packages("remotes")
+#  remotes::install_github("R4EPI/apyramid")
+
 ## ----load_packages------------------------------------------------------------
 library("apyramid")
 library("ggplot2")   # load ggplot2 to control plot aesthetics

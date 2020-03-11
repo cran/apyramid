@@ -11,6 +11,8 @@ Age Pyramids in R
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/apyramid)](https://CRAN.R-project.org/package=apyramid)
+[![CRAN
+downloads](https://cranlogs.r-pkg.org/badges/grand-total/apyramid)](https://CRAN.R-project.org/package=apyramid)
 [![Travis build
 status](https://travis-ci.org/R4EPI/apyramid.svg?branch=master)](https://travis-ci.org/R4EPI/apyramid)
 [![AppVeyor build
@@ -36,22 +38,36 @@ You can install {apyramid} from CRAN:
 install.packages("apyramid")
 ```
 
-You can also install the development version from GitHub using the
-{remotes} package:
+<details>
 
-The most recent released code is guaranteed to be stable:
+<!--
+NOTE: everything inside the details tag will be collapsed and effectively
+hidden from the user
+-->
+
+<summary style='text-decoration: underline'>Click here for alternative
+installation options</summary>
+
+If there is a bugfix or feature that is not yet on CRAN, you can install
+it via the {drat} package:
 
 ``` r
-# install.packages("remotes")
-remotes::install_github("R4EPI/apyramid@*release") 
+# install.packages("drat")
+drat::addRepo("R4EPI")
+install.packages("apyramid")
 ```
 
-Otherwise, you can install the bleeding-edge version like so:
+You can also install the in-development version from GitHub using the
+{remotes} package (but there’s no guarantee that it will be stable):
 
 ``` r
 # install.packages("remotes")
 remotes::install_github("R4EPI/apyramid") 
 ```
+
+</details>
+
+-----
 
 The {apyramid} package was primarily designed for quick visualisation of
 un-aggregated linelist data in field epidemiological situations. It has
@@ -104,6 +120,7 @@ head(flu)
 flup <- age_pyramid(flu, age_group, split_by = gender)
 #> Warning: 2 missing rows were removed (0 values from `age_group` and 2
 #> values from `gender`).
+#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
 flup
 ```
 
@@ -138,6 +155,7 @@ we can the age distribution of these two cases:
 
 ``` r
 age_pyramid(flu, age_group, split_by = gender, na.rm = FALSE)
+#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
 ```
 
 <img src="man/figures/README-flu3-1.png" width="100%" />
@@ -172,6 +190,7 @@ us_2018
 #> 10 20-24 female 10625     6.4
 #> # … with 26 more rows
 p <- age_pyramid(us_2018, age_group = age, split_by = gender, count = count)
+#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
 p + us_labels
 ```
 
@@ -183,7 +202,9 @@ You can also use another factor to split the data:
 data(us_ins_2018) # stratified by gender and health insurance status
 data(us_gen_2018) # stratified by gender and generational status
 p_ins <- age_pyramid(us_ins_2018, age_group = age, split_by = gender, stack_by = insured, count = count)
+#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
 p_gen <- age_pyramid(us_gen_2018, age_group = age, split_by = gender, stack_by = generation, count = count)
+#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
 p_ins + us_labels
 ```
 
@@ -211,6 +232,7 @@ dstrata <- apistrat %>%
   as_survey_design(strata = stype, weights = pw)
  
 age_pyramid(dstrata, apicat, split_by = stype)
+#> Warning: `expand_scale()` is deprecated; use `expansion()` instead.
 ```
 
 <img src="man/figures/README-srvyr-1.png" width="100%" />
